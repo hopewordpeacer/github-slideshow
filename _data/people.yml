@@ -1,0 +1,15 @@
+- name: Ada Lovelace
+  role: Mathematician
+  company: Analytical Engine
+  location: London
+  twitter: "@ada"
+- name: Alan Turing
+  role: Computer Scientist
+  company: Bletchley Park
+  location: Cambridge
+  twitter: "@turing"
+- name: Grace Hopper
+  role: Rear Admiral
+  company: US Navy
+  location: New York
+  twitter: "@ghopper"
