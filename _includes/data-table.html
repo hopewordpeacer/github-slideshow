@@ -1,0 +1,38 @@
+{% assign dataset = include.data | default: '' %}
+{% assign columns = include.columns | default: '' %}
+{% if dataset == '' %}
+  <p><em>No data specified for data-table include.</em></p>
+{% else %}
+  {% assign rows = site.data[dataset] %}
+  {% if rows == nil or rows == empty %}
+    <p><em>Dataset '{{ dataset }}' is empty or missing.</em></p>
+  {% else %}
+    {% if columns == '' %}
+      {% assign first = rows[0] %}
+      {% assign columns = first | keys %}
+    {% else %}
+      {% assign columns = columns | split: ',' %}
+      {% assign columns = columns | map: 'strip' %}
+    {% endif %}
+    <div class="table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            {% for col in columns %}
+              <th>{{ col | capitalize }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+            <tr>
+              {% for col in columns %}
+                <td>{{ row[col] }}</td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+{% endif %}
